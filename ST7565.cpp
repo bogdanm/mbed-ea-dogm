@@ -51,7 +51,7 @@ const extern uint8_t font[];
 // reduces how much is refreshed, which speeds it up!
 // originally derived from Steve Evans/JCW's mod but cleaned up and
 // optimized
-//#define enablePartialUpdate
+#define enablePartialUpdate
 
 #ifdef enablePartialUpdate
 static uint8_t xUpdateMin, xUpdateMax, yUpdateMin, yUpdateMax;
@@ -108,7 +108,7 @@ void  ST7565::drawchar(uint8_t x, uint8_t line, char c) {
         st7565_buffer[line_offset + x] = font[(c * 5 ) + i];
         x++;
     }
-    updateBoundingBox(x, line * 8, x + 5, line * 8 + 8);
+    updateBoundingBox(x - 5, line * 8, x, line * 8 + 8);
 }
 
 // bresenham's algorithm - thx wikpedia
